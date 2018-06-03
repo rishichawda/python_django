@@ -77,7 +77,7 @@ class Author(models.Model):
 
 class Language(models.Model):
 
-    name = models.CharField(max_length=52, help_text="Enter language (e.g., English, Hindi, French, German, Spanish etc.)")
+    language_name = models.CharField(max_length=52, help_text="Enter language (e.g., English, Hindi, French, German, Spanish etc.)")
 
     def __str__(self):
-        return self.name
+        return self.language_name
