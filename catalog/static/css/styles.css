@@ -1,0 +1,18 @@
+.sidebar-nav {
+    margin-top: 20px;
+    padding: 0px;
+    list-style: none;
+}
+
+li > a:link, li > a:visited {
+    color: aliceblue;
+}
+
+li > a:hover {
+    color: antiquewhite;
+}
+
+li {
+    margin: 2% 0;
+    list-style: none;
+}
