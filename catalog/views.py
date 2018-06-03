@@ -3,6 +3,9 @@ from .models import Book, Author, BookInstance, Genre
 
 # Create your views here.
 
+def genre_list():
+    return ', '.join(Genre.objects.values_list('name', flat=True))
+
 def index(request):
     num_books = Book.objects.all().count()
 
@@ -19,6 +22,7 @@ def index(request):
             'num_books': num_books,
             'num_instances': num_instances,
             'num_instances_available': num_instances_available,
-            'num_authors': num_authors
+            'num_authors': num_authors,
+            'genre_list': genre_list
         }
     )
