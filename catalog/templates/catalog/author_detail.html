@@ -2,7 +2,10 @@
 
 {% block content %}
     <h1>{{ author }}</h1>
-
+    <div class="row">
+        <div class="col"><strong>Date of birth : </strong>{% if author.date_of_birth %}{{author.date_of_birth}}{% else %}N/A{% endif %}</div>
+        <div class="col"><strong>Date of death : </strong>{% if author.date_of_death %}{{author.date_of_death}}{% else %}N/A{% endif %}</div>
+    </div>
     {% if author.book_set.all %}
     <p class="lead mt-4">Books by Author :</p>
     <ul>
