@@ -10,7 +10,10 @@
     <p class="lead mt-4">Books by Author :</p>
     <ul>
         {% for book in author.book_set.all %}
-            <li><a class="text-dark" href="{{ book.get_absolute_url }}">{{ book }}</a></li>
+            <li>
+                <a class="text-info" href="{{ book.get_absolute_url }}">{{ book }}</a>
+                <blockquote class="text-muted">{{ book.summary }}</blockquote>
+            </li>
         {% endfor %}
     </ul>
     {% else %}
