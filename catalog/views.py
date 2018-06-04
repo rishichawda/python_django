@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Book, Author, BookInstance, Genre
+from django.views import generic
 
 # Create your views here.
 
@@ -26,3 +27,17 @@ def index(request):
             'genre_list': genre_list
         }
     )
+
+class BookListView(generic.ListView):
+    model = Book
+
+    def get_queryset(self):
+        return Book.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super(BookListView, self).get_context_data(**kwargs)
+        context['user_data'] = 'Additional data through generic class based view - BookListView in catalog/views.py'
+        return context
+
+class BookDetailView(generic.DetailView):
+    model = Book
