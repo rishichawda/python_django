@@ -30,6 +30,7 @@ def index(request):
 
 class BookListView(generic.ListView):
     model = Book
+    paginate_by = 5
 
     def get_queryset(self):
         return Book.objects.all()
@@ -41,3 +42,13 @@ class BookListView(generic.ListView):
 
 class BookDetailView(generic.DetailView):
     model = Book
+
+class AuthorListView(generic.ListView):
+    model = Author
+    paginate_by = 7
+
+    def get_queryset(self):
+        return Author.objects.all()
+
+class AuthorDetailView(generic.DetailView):
+    model = Author

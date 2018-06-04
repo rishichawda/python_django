@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>{{ author }}</h1>
+
+    {% if author.book_set.all %}
+    <p class="lead mt-4">Books by Author :</p>
+    <ul>
+        {% for book in author.book_set.all %}
+            <li><a class="text-dark" href="{{ book.get_absolute_url }}">{{ book }}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p class="lead mt-5">Sorry, No books available for this author!</p>
+    {% endif %}
+{% endblock %}
