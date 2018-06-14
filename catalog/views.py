@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from .models import Book, Author, BookInstance, Genre
 from django.views import generic
-
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 def genre_list():
     return ', '.join(Genre.objects.values_list('name', flat=True))
 
+@login_required
 def index(request):
     num_books = Book.objects.all().count()
 
@@ -32,7 +34,7 @@ def index(request):
         }
     )
 
-class BookListView(generic.ListView):
+class BookListView(LoginRequiredMixin, generic.ListView):
     model = Book
     paginate_by = 5
 
@@ -44,15 +46,15 @@ class BookListView(generic.ListView):
         context['user_data'] = 'Additional data through generic class based view - BookListView in catalog/views.py'
         return context
 
-class BookDetailView(generic.DetailView):
+class BookDetailView(LoginRequiredMixin, generic.DetailView):
     model = Book
 
-class AuthorListView(generic.ListView):
+class AuthorListView(LoginRequiredMixin, generic.ListView):
     model = Author
     paginate_by = 7
 
     def get_queryset(self):
         return Author.objects.all()
 
-class AuthorDetailView(generic.DetailView):
+class AuthorDetailView(LoginRequiredMixin, generic.DetailView):
     model = Author
